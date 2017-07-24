@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Uma página para notação de vídeo.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>Notação de Vídeo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" / >
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+<link rel="stylesheet" href="pagina.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="../client.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<script>
+var client = new ClientJS();
+var fingerprint = client.getFingerprint();
+console.log(fingerprint);
+  </script>
+
+    <script>
+    var legenda;
+    var link;
+$.getJSON("http://46.101.129.171:8080/api/task1", function(key,result){
+        legenda="Legenda Original: "+key.legenda;
+        link="http://46.101.129.171:8080/video/"+key.id_video+".mp4";
+$("#video").html('<source src="'+link+'" type="video/mp4"></source>' );
+$('#legendatexto').html(legenda);
+    });
+    </script>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">Anotação de Vídeo</span>
+    </div>
+  </header>
+</div>
+<br/><br/><br/><br/><br/>
+
+    <center>
+      <video id="video" controls="controls" width="55%" height="55%" autoplay="true">
+  
+     </video>
+    
+<h6>
+    <div id="legendatexto"></div>
+</h6>
+    <form action="#">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="legenda">
+        <label class="mdl-textfield__label" for="legenda">Legenda Traduzida</label>
+      </div>
+      <br/>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Enviar
+</button>
+    </form>
+  </center>
+</div>
+
+</body>
+
+</html>

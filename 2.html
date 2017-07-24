@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Uma página para notação de vídeo.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>Notação de Vídeo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" / >
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+<link rel="stylesheet" href="pagina.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="../client.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<script>
+var client = new ClientJS();
+var fingerprint = client.getFingerprint();
+console.log(fingerprint);
+  </script>
+
+<script>
+    var legenda;
+    var link;
+    var op1;
+    var op2;
+    var op3;
+    var op4;
+    var op5;
+$.getJSON("http://46.101.129.171:8080/api/task2", function(key,result){
+        legenda="Legenda Original: "+key.legenda_original;
+        link="http://46.101.129.171:8080/video/"+key.id_video+".mp4";
+$("#video").html('<source src="'+link+'" type="video/mp4"></source>' );
+$('#legendatexto').html(legenda);
+if(key.legendas.length=='0')
+{
+$("#aparecer1").hide();
+    $("#aparecer2").hide();
+    $("#aparecer3").hide();
+  $("#aparecer4").hide();
+  $("#aparecer5").hide();
+}
+if(key.legendas.length=='1')
+{
+    op1=key.legendas[0].legenda;
+  $("#texto1").text(op1);
+    $("#aparecer2").hide();
+    $("#aparecer3").hide();
+  $("#aparecer4").hide();
+  $("#aparecer5").hide();
+}
+if(key.legendas.length=='2')
+{
+  op1=key.legendas[0].legenda;
+  $("#texto1").text(op1);
+  op2= key.legendas[1].legenda;
+  $("#texto2").text(op2);
+  $("#aparecer3").hide();
+  $("#aparecer4").hide();
+  $("#aparecer5").hide();
+}
+if(key.legendas.length=='3')
+{
+  op1=key.legendas[0].legenda;
+  $("#texto1").text(op1);
+  op2= key.legendas[1].legenda;
+  $("#texto2").text(op2);
+  op3= key.legendas[2].legenda;
+  $("#texto3").text(op3);
+    $("#aparecer4").hide();
+  $("#aparecer5").hide();
+
+}
+if(key.legendas.length=='4')
+{
+  op1=key.legendas[0].legenda;
+  $("#texto1").text(op1);
+  op2= key.legendas[1].legenda;
+  $("#texto2").text(op2);
+  op3= key.legendas[2].legenda;
+  $("#texto3").text(op3);
+  op4= key.legendas[3].legenda;
+  $("#texto4").text(op4);
+  $("#aparecer5").hide();
+}
+if(key.legendas.length=='5')
+{
+    op1=key.legendas[0].legenda;
+  $("#texto1").text(op1);
+  op2= key.legendas[1].legenda;
+  $("#texto2").text(op2);
+  op3= key.legendas[2].legenda;
+  $("#texto3").text(op3);
+  op4= key.legendas[3].legenda;
+  $("#texto4").text(op4);
+  op5= key.legendas[4].legenda;
+  $("#texto5").text(op5);
+}
+     
+console.log(key.legendas.length);
+
+
+    });
+    </script>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">Escolha de Legenda</span>
+    </div>
+  </header>
+</div>
+<br/><br/><br/><br/><br/>
+
+    <center>
+      <video id="video" controls="controls" width="55%" height="55%" autoplay="true">
+  
+     </video>
+<h6>
+    <div id="legendatexto"></div>
+</h6>
+      <form action="#">
+        <label id="aparecer1" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+  <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
+  <span id="texto1" class="mdl-radio__label"></span>
+</label>
+<br/>
+        <label id="aparecer2" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+  <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
+  <span id="texto2" class="mdl-radio__label"></span>
+</label>
+<br/>
+<label id="aparecer3" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+  <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3">
+  <span id="texto3" class="mdl-radio__label"></span>
+</label>
+<br/>
+<label id="aparecer4" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+  <input type="radio" id="option-4" class="mdl-radio__button" name="options" value="4">
+  <span id="texto4" class="mdl-radio__label"></span>
+</label>
+<br/>
+<label id="aparecer5" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-5">
+  <input type="radio" id="option-5" class="mdl-radio__button" name="options" value="5">
+  <span id="texto5" class="mdl-radio__label"></span>
+</label>
+        <br/>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Enviar
+</button>
+      </form>
+    </center>
+
+  
+</body>
+
+</html>
