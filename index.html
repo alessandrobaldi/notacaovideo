@@ -11,112 +11,43 @@
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
 <link rel="stylesheet" href="pagina.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="client.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
+<script>
+var client = new ClientJS();
+var fingerprint = client.getFingerprint();
+console.log(fingerprint);
+  </script>
 
-  <!--TELA LOADING
-Para a view de loading, use o código abaixo:
-
+   <script>
+    var recebidotarefainicial;
+$.getJSON("http://46.101.129.171:8080/api/taskEnabled", function(result){
+        $.each(result, function(i, field){
+            recebidotarefainicial=field;
+            if(recebidotarefainicial=='0')
+            {
+              //mostrar diálogo
+            }
+            if(recebidotarefainicial=='1')
+            {
+              $(window).attr("location","task/1.html");
+            }
+            if(recebidotarefainicial=='2')
+            {
+             $(window).attr("location","task/2.html");
+            }
+        });
+    });
+    </script>
+<div id="carregamento">
   <div class="box">
     <div class="mdl-spinner mdl-js-spinner is-active"></div>
   </div>
-
-  --><!--Faça a requisição aqui - Retorna 0 (para sem tarefa), Retorna 1 (para tarefa de anotação), Retorna 2 (para tarefa de escolha)-->
-
-
-
-  
-
-  <!--TELA DE NOTAÇÃO - Pega o link do .mp4 e legenda (tarefa 0)
-    Faz a requisição do link da legenda e a legenda em texto
-    Para a view de notação, use o código abaixo:-->
-
-<!--
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Anotação de Vídeo</span>
-    </div>
-  </header>
 </div>
-<br/><br/><br/><br/><br/>
-    <center>
-      <video controls="controls" width="55%" height="55%" autoplay>
-      <source src="COLOQUEAQUIOLINKDOMP4NOSERVIDOR.mp4" type="video/mp4" />
-     </video>
-<h6>
-Legenda Original: <!--Colocar a legenda recebida aqui--><!--
-</h6>
-    <form action="#">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="legenda">
-        <label class="mdl-textfield__label" for="legenda">Legenda Traduzida</label>
-      </div>
-      <br/>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Enviar
-</button>
-    </form>
-  </center>
-</div>
--->
-
-
-
-
-
-  <!--TELA DE ESCOLHA DE LEGENDA (tarefa 2)-->
-  <!--Para a view de notação, use o código abaixo:
-  -->
-  <!--Faz a requisição para o servidor e recebe um json com 5 opções de legenda-->
-  <!--
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title"></span>
-      </div>
-    </header>
-    <center>
-      <video controls="controls" width="55%" height="55%" autoplay>
-      <source src="COLOQUEAQUIOLINKDOMP4NOSERVIDOR.mp4" type="video/mp4" />
-     </video>
-<h6>
-Legenda Original: <!--Colocar a legenda recebida aqui--><!--
-</h6>
-      <form action="#">
-        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-  <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
-  <span class="mdl-radio__label">COLOQUE AQUI A PRIMEIRA OPÇÃO</span>
-</label>
-<br/>
-        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-  <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
-  <span class="mdl-radio__label">COLOQUE AQUI A SEGUNDA OPÇÃO</span>
-</label>
-<br/>
-<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-  <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="2">
-  <span class="mdl-radio__label">COLOQUE AQUI A TERCEIRA OPÇÃO</span>
-</label>
-<br/>
-<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
-  <input type="radio" id="option-4" class="mdl-radio__button" name="options" value="2">
-  <span class="mdl-radio__label">COLOQUE AQUI A QUARTA OPÇÃO</span>
-</label>
-<br/>
-<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-5">
-  <input type="radio" id="option-5" class="mdl-radio__button" name="options" value="2">
-  <span class="mdl-radio__label">COLOQUE AQUI A QUINTA OPÇÃO</span>
-</label>
-        <br/>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Enviar
-</button>
-      </form>
-    </center>
-  </div>
 
 </body>
 
